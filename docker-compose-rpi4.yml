@@ -15,7 +15,6 @@ volumes:
     
 services:
 
-  # (Broker does not work for RPI4)
   #broker:
   #  image: 'prologic/mosquitto:latest'
   #  container_name: broker
@@ -90,7 +89,6 @@ services:
     networks:
       - mongodb_network
     links:
-      # (Broker does not work for RPI4)
       # - broker
       - mongodb
     ports:
