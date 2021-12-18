@@ -1,2 +1,11 @@
+*.zip
+*.gz
+*.tar
+
 mongodb/backup/data/*
-mongodb/data/*
+private/*
+
+# TODO:
+docker-compose-rpi4.yml.broker
+
+*.env
