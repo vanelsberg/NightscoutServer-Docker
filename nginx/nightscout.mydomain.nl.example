@@ -1,0 +1,41 @@
+upstream nightscout
+{
+    server 192.168.1.123:1337;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    ssl off;
+
+    client_max_body_size 500M;
+    server_name
+      nightscout.mydomain.nl
+      ;
+
+    root /var/www/vanelsberg.com/html;
+    index index.html;
+
+    # Black hole, hide erros...
+    error_page 500 502 503 504 =444 @blackhole;
+    location @blackhole {
+        return 444;
+    }
+
+    location / {
+       proxy_pass http://nightscout;
+
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection "upgrade";
+       proxy_read_timeout 120s;
+
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Certbot will generate these lines:
+    #ssl_certificate /etc/letsencrypt/live/nightscout.mydomain.nl/fullchain.pem; # managed by Certbot
+    #ssl_certificate_key /etc/letsencrypt/live/nightscout.mydomain.nl/privkey.pem; # managed by Certbot
+}
