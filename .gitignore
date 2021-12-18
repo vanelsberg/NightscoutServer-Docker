@@ -3,6 +3,7 @@
 *.tar
 
 mongodb/backup/data/*
+mongodb/database/*
 private/*
 
 # TODO:

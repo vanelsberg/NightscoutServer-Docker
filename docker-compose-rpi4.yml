@@ -32,7 +32,7 @@ services:
       - MONGO_INITDB_USER=${MONGO_INITDB_USER}
       - MONGO_INITDB_PASS=${MONGO_INITDB_PASS}
     volumes:
-      - mongodbdata:/data/db
+      - ./mongodb/database:/data/db
       - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     networks:
       - mongodb_network
