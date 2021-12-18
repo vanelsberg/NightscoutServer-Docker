@@ -1,9 +1,6 @@
 version: "3.8"
 
-# docker volume create --driver local \
-#     --opt type=none \
-#     --opt device=/data/mongodb/data \
-#     --opt o=bind mongodbdata
+# docker volume create --driver local --opt o=bind mongodbdata ....
 
 # MongoDB and Mongo-Express images:
 # Try "docker search mongo"
@@ -32,7 +29,7 @@ services:
       - MONGO_INITDB_USER=${MONGO_INITDB_USER}
       - MONGO_INITDB_PASS=${MONGO_INITDB_PASS}
     volumes:
-      - mongodbdata:/data/db
+      - ./mongodb/database:/data/db
       - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     networks:
       - mongodb_network

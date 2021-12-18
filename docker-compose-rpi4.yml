@@ -1,9 +1,6 @@
 version: "3.3"
 
-# docker volume create --driver local \
-#     --opt type=none \
-#     --opt device=/data/mongodb/data \
-#     --opt o=bind mongodbdata
+# docker volume create --driver local --opt o=bind mongodbdata ....
 
 # MongoDB and Mongo-Express images:
 # Try "docker search mongo"
