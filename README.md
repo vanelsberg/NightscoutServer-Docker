@@ -60,9 +60,14 @@ To dump the nightscout Mongo database in this repository:
         mongodump -v -u root -p pass12345 --host localhost --port 27017 --authenticationDatabase admin --db nightscoutdb --out=./backup --gzip
 
 
-# Hosting behinf NGinx
+# Hosting behinf Nginx
 
-See https://github.com/nightscout/cgm-remote-monitor#installation-notes-for-users-with-nginx-or-apache-reverse-proxy-for-ssltls-offloading
+See:
+
+- Nginx: https://github.com/nightscout/cgm-remote-monitor#installation-notes-for-users-with-nginx-or-apache-reverse-proxy-for-ssltls-offloading
+- SSL: https://letsencrypt.org/
+- Certbot: https://certbot.eff.org
+- DOMAIN: https://nl.godaddy.com/
 
 
 ### Deploy on RPI 4 issues
