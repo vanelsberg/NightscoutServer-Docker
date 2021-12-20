@@ -3,9 +3,9 @@
 ### Dependancies
 
     * Docker
-        - Docker Desktop for Windows 10/WSL2
+        - Docker Desktop for Windows 10/WSL2 or Docker Ubuntu 18.04, 20.10
         
-    * Images form the Docker repository (try "docker search mongo")
+    * Images from the Docker repository (try "docker search mongo")
         - mongo
         - mongo-express
 
@@ -51,7 +51,7 @@ Create the volumen with create_data_volume.sh:
 Due to a A bug in Docker Desktop version 4.1 for Windows 10/WSL2, after restarting Docker the volume can not be found
 This can be fixed by re-running the "docker volume create" that wa sused to create the volume. No data will be lost.
 
-When running nightscout on Heroku, use thsi to make dump from the database:
+When running nightscout on Heroku, use this to make dump from the database:
 
         mongodump --uri mongodb+srv://$user:$password@$host/$db --out ./backup --gzip
 
@@ -79,14 +79,6 @@ On the RPI4 test system runing Ubuntu 20.10, only the "vfs" filesystem was suppo
         "storage-driver": "vfs"
         }
 
-Because of The (most likely?) external volumes do not work.
-
-    _Change on the docker-compose.yml file_
-
-        volumes:
-        mongodbdata:
-        #  external: true
-
 The RPI4 CPU is only supported for MongoDB version 4 or lower
 
     _Change on the docker-compose.yml file_
@@ -94,3 +86,20 @@ The RPI4 CPU is only supported for MongoDB version 4 or lower
         services:
         mongodb:
             image: mongo:4.4
+
+Because of external volumes not working...
+
+    _Change on the docker-compose.yml file_
+
+        volumes:
+        mongodbdata:
+        #  external: true
+
+        mongodb:
+            image: mongo:4.4
+            ..........
+            volumes:
+                - ./mongodb/database:/data/db
+                - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+
+
