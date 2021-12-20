@@ -1,4 +1,4 @@
-## Nigscout Dokcer deployemnt
+## Nightscout Docker deployemnt
 
 ### Dependancies
 
