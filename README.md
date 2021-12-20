@@ -40,7 +40,7 @@ The API Secret is at ns-apisecret.env (keep secure, not in git for production!)
 
 #### Data
 
-Data is stored at a external Docker volume were the actual data is local on the host running docker
+Data is stored using a external Docker volume where the actual data is local on the host running Docker
 Create the volumen with create_data_volume.sh:
 
         docker volume create --driver local \
@@ -48,10 +48,10 @@ Create the volumen with create_data_volume.sh:
             --opt device=/home/theo/NS/mongodb/data \
             --opt o=bind mongodbdata
 
-Due to a A bug in Docker Desktop version 4.1 for Windows 10/WSL2, after restarting Docker the volume can not be found
-This can be fixed by re-running the "docker volume create" that wa sused to create the volume. No data will be lost.
+Due to a A bug in Docker Desktop version 4.1 for Windows 10/WSL2, after restarting Docker the volume can not be found.
+This can be fixed by re-running the "docker volume create" that was used to create the volume. No data will be lost.
 
-When running nightscout on Heroku, use this to make dump from the database:
+When running nightscout on Heroku use this to dump the database:
 
         mongodump --uri mongodb+srv://$user:$password@$host/$db --out ./backup --gzip
 
@@ -79,7 +79,7 @@ On the RPI4 test system runing Ubuntu 20.10, only the "vfs" filesystem was suppo
         "storage-driver": "vfs"
         }
 
-The RPI4 CPU is only supported for MongoDB version 4 or lower
+The RPI4 CPU is only supported for MongoDB version 4.4 or lower
 
     _Change on the docker-compose.yml file_
 
