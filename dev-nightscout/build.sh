@@ -1,8 +1,11 @@
 #!/bin/bash
 
 image=dev-nightscout
-imageversion=14.2.3
-buildargs=$imageversion
+imageversion=14.0.3 # -> Is OK
+# imageversion=14.2.4
 
-docker build --tag "$image:$imageversion" --build-arg $buildargs .
+# caching="--no-cache"
+
+#docker build --tag "$image:$imageversion" --build-arg $buildargs .
+docker build $caching --tag "$image:$imageversion" .
 
