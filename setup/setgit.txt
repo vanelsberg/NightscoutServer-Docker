@@ -1,0 +1,5 @@
+git config --global credential.helper 'cache --timeout=3600'
+
+git config --list
+git config --global user.name "gituser"
+git config --global user.email "gituser@domain.com"
