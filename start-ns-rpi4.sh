@@ -1,12 +1,22 @@
 #!/bin/bash
 
+if [ "$1" == "service" ];
+then
+  param1=""
+else
+  param1="-d"
+fi;
+
 # Change to directory where this script is running
 pushd $(dirname $0)
 
 # Start NS
-sudo docker-compose -f docker-compose-rpi4.yml up -d
+$dosudo docker compose --verbose -f docker-compose-rpi4.yml up $param1
+
 # Show containers
-docker container ls
+$dosudo docker container ls
 
 # Change to original directory
 popd
+
+exit 0

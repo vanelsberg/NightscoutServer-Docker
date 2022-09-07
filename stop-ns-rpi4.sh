@@ -4,7 +4,7 @@
 pushd $(dirname $0)
 
 # Stop NS
-sudo docker-compose -f docker-compose-rpi4.yml down
+$dosudo docker compose -f docker-compose-rpi4.yml down
 
 # Change to original directory
 popd

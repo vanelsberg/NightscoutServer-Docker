@@ -1,0 +1,24 @@
+[Unit]
+Description=Nighscout startup script
+After=network.target
+After=network-online.target
+# After=systemd-user-sessions.service
+
+[Service]
+User=tvelsberg
+# Type=simple: (Default)
+# Type=forking: is used when the process specified by ExecStart is expected to exit
+# after start-up is complete, while its child process(es) continue(s) to run in the background. 
+Type=simple
+
+# PIDFile=/run/nightscout.pid
+ExecStart=/home/tvelsberg/NS/start-ns-rpi4.sh service
+ExecStop=/home/tvelsberg/NS/stop-ns-rpi4.sh
+TimeoutSec=300
+Restart=on-failure
+RestartSec=600
+# StartLimitInterval=350
+# StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target
