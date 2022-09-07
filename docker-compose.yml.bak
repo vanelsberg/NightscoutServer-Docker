@@ -72,6 +72,10 @@ services:
     restart: unless-stopped
 
   nightscout:
+    # image: 'nightscout/cgm-remote-monitor:latest_dev'
+    # image: 'nightscout/cgm-remote-monitor:latest'
+    # image: 'dev-nightscout:localdev'
+    # image: 'dev-nightscout:14.0.3'
     image: 'nightscout/cgm-remote-monitor:14.2.5'
     container_name: nightscout
     environment:
