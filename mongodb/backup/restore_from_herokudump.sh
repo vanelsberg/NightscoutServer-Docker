@@ -8,7 +8,7 @@ port=27017
 db=$MONGO_INITDB_DATABASE
 dodropcollection="--drop"
 
-datadumpdir=./data/dumps/$HEROKU_db/
+datadumpdir=./data/dumps/$HEROKU_db
 
 cmd="mongorestore ${dodropcollection} -v -u ${user} -p ${password} --host ${host} --port 27017 --authenticationDatabase admin --db ${db} --gzip ${datadumpdir}"
 echo $cmd

@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./heroku.env
+source ../../.env
 
 # Dump Atlas MongoDb database for https://xxxxx.herokuapp.com/
 user=$HEROKU_user

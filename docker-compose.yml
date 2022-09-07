@@ -45,31 +45,33 @@ services:
       retries: 3
     restart: unless-stopped
 
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=${MONGODB_SERVER}
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=${MONGODB_ENABLE_ADMIN}
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_ADMINUSERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_ADMINPASSWORD}
-      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRES_BASICAUTH_USERNAME}
-      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRES_BASICAUTH_PASSWORD}
-    volumes:
-      - data:/data/express
-    depends_on:
-      - mongodb
-    networks:
-      - mongodb_network
-    ports:
-      - 8081:8081
-    healthcheck:
-      # test:  wget --quiet --tries=3 --spider http://admin:admin123@mongo-express:8081 || exit 1
-      test:  wget --quiet --tries=3 --spider http://${MONGOEXPRES_BASICAUTH_USERNAME}:${MONGOEXPRES_BASICAUTH_PASSWORD}@mongo-express:8081 || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo-express
+  #   env_file:
+  #     - mongodb.env
+  #   environment:
+  #     - ME_CONFIG_MONGODB_SERVER=${MONGODB_SERVER}
+  #     - ME_CONFIG_MONGODB_ENABLE_ADMIN=${MONGODB_ENABLE_ADMIN}
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_ADMINUSERNAME}
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_ADMINPASSWORD}
+  #     - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRES_BASICAUTH_USERNAME}
+  #     - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRES_BASICAUTH_PASSWORD}
+  #   volumes:
+  #     - data:/data/express
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - mongodb_network
+  #   ports:
+  #     - 8081:8081
+  #   healthcheck:
+  #     # test:  wget --quiet --tries=3 --spider http://admin:admin123@mongo-express:8081 || exit 1
+  #     test:  wget --quiet --tries=3 --spider http://${MONGOEXPRES_BASICAUTH_USERNAME}:${MONGOEXPRES_BASICAUTH_PASSWORD}@mongo-express:8081 || exit 1
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #   restart: unless-stopped
 
   nightscout:
     image: 'nightscout/cgm-remote-monitor:14.2.5'
@@ -86,7 +88,6 @@ services:
     env_file:
       - ns-apisecret.env
       - ns-settings.env
-      - mongodb.env
     networks:
       - mongodb_network
     links:

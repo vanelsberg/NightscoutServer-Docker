@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../../.env
+source ../../mongodb.env
 
 user=$MONGODB_ADMINUSERNAME
 password=$MONGODB_ADMINPASSWORD

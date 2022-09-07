@@ -9,5 +9,5 @@ nshome=/home/theo         # WSL2
 
 docker volume create --driver local \
     --opt type=none \
-    --opt device=${nshome}/NS/mongodb/data \
+    --opt device=${nshome}/NS/mongodb/database \
     --opt o=bind mongodbdata
