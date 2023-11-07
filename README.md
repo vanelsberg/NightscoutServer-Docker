@@ -60,7 +60,7 @@ To dump the nightscout Mongo database in this repository:
         mongodump -v -u root -p pass12345 --host localhost --port 27017 --authenticationDatabase admin --db nightscoutdb --out=./backup --gzip
 
 
-# Hosting behinf Nginx
+# Hosting behind Nginx
 
 See:
 
